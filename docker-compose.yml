@@ -34,7 +34,7 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_DATABASE: ${DB_DATABASE}
     ports:
       - 3306:3306
     restart: always
@@ -45,7 +45,7 @@ services:
   #   image: postgres:latest
   #   container_name: postgres
   #   environment:
-  #     POSTGRES_DB: ${DB_NAME}
+  #     POSTGRES_DB: ${DB_DATABASE}
   #     POSTGRES_USER: ${DB_USERNAME}
   #     POSTGRES_PASSWORD: ${DB_PASSWORD}
   #   ports:

@@ -1,4 +1,4 @@
-# Docker com Apache 2.4, PHP 8.3.8, MySQL ou PostgreSQL
+# Docker com Apache 2.4, PHP 8.3.9, MySQL ou PostgreSQL
 
 Este repositório contém um ambiente Docker configurado para desenvolvimento local com Apache, PHP, MySQL ou PostgreSQL. Utilize as instruções abaixo para configurar e executar o ambiente.
 
@@ -13,37 +13,45 @@ Este repositório contém um ambiente Docker configurado para desenvolvimento lo
     ```bash
     git clone https://github.com/bieuzitos/docker-php.git
 
-2. **Configuração dos Certificados SSL:**
+2. **Atualização dos Hosts:**
 
-    Para configurar certificados SSL autoassinados, execute o seguinte comando dentro diretório /ssl:
+    No diretório `.docker/apache/bin`, execute o arquivo:
+
+    ```cmd
+    hosts.cmd
+    ```
+
+    Este comando criará as entradas necessárias para cada arquivo .conf em sites-enabled.
+
+    **Nota:** Este passo é essencial para o correto funcionamento do sistema, pois apenas com os hosts devidamente configurados, o ambiente funcionará corretamente.
+
+3. **Construir as Imagens:**
+
+    Antes de iniciar os containers, é necessário construir as imagens. Execute o seguinte comando:
 
     ```bash
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt -config ../config/openssl.conf
+    docker-compose build
 
-3. **Executar os Containers:**
+4. **Executar os Containers:**
 
     Execute o seguinte comando para iniciar os containers:
 
     ```bash
     docker-compose up -d
 
-4. **Acessar Aplicações:**
+5. **Acessar Aplicações:**
 
     * Apache: Acesse https://localhost.dev no navegador.
     * PHP: Coloque seus arquivos PHP em public/.
     * MySQL: Use localhost:3306 com as credenciais configuradas.
     * PostgreSQL: Use localhost:5432 com as credenciais configuradas.
 
-5. **Parar os Containers:**
+6. **Parar os Containers:**
 
     Para parar os containers, execute:
 
     ```bash
     docker-compose down
-
-## Configurações Adicionais
-
-O Apache está configurado para usar SSL. Os certificados ficaram localizados em .docker/apache/ssl/.
 
 ## Notas
 
